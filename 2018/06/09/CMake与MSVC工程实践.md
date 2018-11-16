@@ -82,6 +82,18 @@ cmake ${PROJECT_SOURCE_DIR}
 ```
 打开生成的解决方案会发现除了所有的库的可执行文件对应一个project外，还有ALL_BUILD和一个ZERO_CHECK项目，ALL_BUILD顾名思义就是构建所有的项目了。而构建ZERO_CHECK会触发cmake重新检查CMakeList.txt并且重新加载解决方案，这样就避免了修改CMakeList.txt后重新执行命令生成msvc工程的麻烦了，同时还能保留设置的断点、书签等等。
 
+### 设置Target Platform Version
+有时需要指定winsdk的版本，例如设置为8.1：
+```CMake
+set(CMAKE_SYSTEM_VERSION 8.1 CACHE TYPE INTERNAL FORCE)
+```
+
+### 设置Platform Toolset
+有时需要指定工具集的版本，例如生成vs2017工程但是使用vs2015的编译链：
+```CMake
+cmake -G "Visual Studio 15 2017" -T v140
+```
+
 ## 结束语
 上文所述的仅仅是CMake的冰山一角，还有许许多多的功能和选项可以方便我们进行工程文件的管理。
 
